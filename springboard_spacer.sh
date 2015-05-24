@@ -89,8 +89,8 @@ case "$file_dim" in
 	640x1136)
 		echo 'iPhone 5/5S, iPod Touch 5G identified.'
 
-		num_icons_x=4; # Number of columns
-		num_icons_y=5; # Number of rows
+		num_icons_x=4; # Number of rows
+		num_icons_y=5; # Number of columns
 		icon_dim=120;  # Icon size (width and height are the same)
 
 		icons=( \
