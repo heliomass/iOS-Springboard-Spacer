@@ -102,8 +102,26 @@ case "$file_dim" in
 		)
 
 		;;
+	750x1334)
+		echo 'iPhone 6 identified.'
+
+		num_icons_x=4; # Number of rows
+		num_icons_y=6; # Number of columns
+		icon_dim=120;  # Icon size (width and height are the same)
+
+		icons=( \
+			'54+48'  '228+48'  '402+48'  '576+48'  \
+			'54+224' '228+224' '402+224' '576+224' \
+			'54+400' '228+400' '402+400' '576+400' \
+			'54+576' '228+576' '402+576' '576+576' \
+			'54+752' '228+752' '402+752' '576+752' \
+			'54+928' '228+928' '402+928' '576+928' \
+		)
+
+		;;
 	*)
-		echo 'Wrong screen dimensions. iPhone 5 and 5S supported only.' >&2
+		echo 'Wrong screen dimensions. The following devices are supported only at this time:' >&2
+		echo 'iPhone 5, iPhone 5S, iPhone 6, iPod Touch 5G' >&2
 		exit 1
 		;;
 esac

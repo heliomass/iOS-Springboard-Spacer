@@ -10,11 +10,11 @@ iOS Springboard Spacer is a shell script which helps you gain more control over 
 
 
 ## Which Devices Does It Support?
-The script is generic enough to support several screen sizes, but currently only supports the iPhone 5, 5S and the iPod Touch 5G. I would be happy to add support for other screen sizes if the demand is there, just drop me a message here on GitHub.
+The script is generic enough to support several screen sizes, but currently only supports the iPhone 5, 5S, 6 and the iPod Touch 5G. I would be happy to add support for other screen sizes if the demand is there, just drop me a message here on GitHub.
 
 
 ## How Does It Work?
-The script produces "fake" home screen icons which exactly match your background. When placed correctly, these give the appearance of empty space on your homescreen. 
+The script produces "fake" home screen icons which exactly match your background. When placed correctly, these give the appearance of empty space on your homescreen.
 
 
 ## How do I use It?
