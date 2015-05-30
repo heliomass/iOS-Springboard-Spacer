@@ -87,3 +87,7 @@ It would be nice, but probably not. As mentioned above, this is more of a curios
 ### Does the script support iOS 6 an earlier?
 
 Not at this current time, since the pre-iOS 7 icon sizes are smaller. It would be simple to add the feature if requested.
+
+### I don't understand how the command line works! If I send you a screenshot of my empty home screen, will you generate the icons for me?
+
+Maybe. Just drop me a message.
