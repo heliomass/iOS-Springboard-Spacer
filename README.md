@@ -8,6 +8,8 @@ iOS Springboard Spacer is a shell script which helps you gain more control over 
 
 ![](readme_images/img_8.png)
 
+![](readme_images/img_9.png)
+
 
 ## Which Devices Does It Support?
 The script is generic enough to support several screen sizes, but currently only supports the iPhone 5, 5S, 6 and the iPod Touch 5G. I would be happy to add support for other screen sizes if the demand is there, just drop me a message here on GitHub.
