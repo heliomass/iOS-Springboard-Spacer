@@ -25,6 +25,7 @@ cat << EOF
 Usage:
 	--file_name  - The PNG file containing a screenshot of your empty homescreen
 	--output_dir - An empty directory in which to output the generated spacing icons
+	--6          - Icon sizes and placement should match iOS 6
 
 For more information, please consult the README file or visit:
 https://github.com/heliomass/iOS-Springboard-Spacer
@@ -42,6 +43,7 @@ fi
 
 file_name=
 output_dir=
+ios6=0
 while [ $# -gt 0 ]; do
 	case "$1" in
 		--file_name)
@@ -51,6 +53,10 @@ while [ $# -gt 0 ]; do
 		--output_dir)
 			output_dir=$2
 			shift 2
+			;;
+		--6)
+			ios6=1
+			shift
 			;;
 		--help)
 			show_help
@@ -86,8 +92,35 @@ fi
 
 # Using the filesize as a guide, set up arrays containing all the icon positions.
 case "$file_dim" in
+	640x960)
+		echo 'iPhone 4/4S, iPod Touch 4G identified.'
+
+		# Only iOS 6 supported
+		if [ $ios6 -ne 1 ]; then
+			echo 'Only iOS 6 is supported for this device. Please try again with the --6 option.' >&2
+			exit 1
+		fi
+
+		num_icons_x=4; # Number of rows
+		num_icons_y=4; # Number of columns
+		icon_dim=114;  # Icon size (width and height are the same)
+
+		icons=( \
+			'34+67'  '186+67'  '340+67'  '492+67'  \
+			'34+243' '186+243' '340+243' '492+243' \
+			'34+419' '186+419' '340+419' '492+419' \
+			'34+595' '186+595' '340+595' '492+595' \
+		)
+
+		;;
 	640x1136)
 		echo 'iPhone 5/5S, iPod Touch 5G identified.'
+
+		# iOS 6 unsupported
+		if [ $ios6 -eq 1 ]; then
+			echo 'iOS 6 is not supported for this device. Please try again without the --6 option.' >&2
+			exit 1
+		fi
 
 		num_icons_x=4; # Number of rows
 		num_icons_y=5; # Number of columns
@@ -105,6 +138,12 @@ case "$file_dim" in
 	750x1334)
 		echo 'iPhone 6 identified.'
 
+		# iOS 6 unsupported
+		if [ $ios6 -eq 1 ]; then
+			echo 'iOS 6 is not supported for this device. Please try again without the --6 option.' >&2
+			exit 1
+		fi
+
 		num_icons_x=4; # Number of rows
 		num_icons_y=6; # Number of columns
 		icon_dim=120;  # Icon size (width and height are the same)
@@ -121,7 +160,8 @@ case "$file_dim" in
 		;;
 	*)
 		echo 'Wrong screen dimensions. The following devices are supported only at this time:' >&2
-		echo 'iPhone 5, iPhone 5S, iPhone 6, iPod Touch 5G' >&2
+		echo 'iOS 7 and later: iPhone 5, iPhone 5S, iPhone 6, iPod Touch 5G' >&2
+		echo 'iOS 6 and earlier: iPhone 4, iPhone 4S, iPod Touch 4G' >&2
 		exit 1
 		;;
 esac
@@ -130,12 +170,13 @@ esac
 counter=0
 while [ $counter -lt ${#icons[@]} ]; do
 	echo -n '.'
-	convert $file_name -crop "120x120+${icons[$counter]}" ${output_dir}/${counter}.png
+	convert $file_name -crop "${icon_dim}x${icon_dim}+${icons[$counter]}" ${output_dir}/${counter}.png
 	cat << EOF > ${output_dir}/${counter}.html
 <html>
 <head>
 	<title>&#8290;</title>
-	<link rel="apple-touch-icon" sizes="${icon_dim}x${icon_dim}" href="./${counter}.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="${icon_dim}x${icon_dim}" href="./${counter}.png" />
+	<meta name="viewport" content="initial-scale=1" />
 </head>
 <body>
 	<p>
@@ -158,11 +199,12 @@ echo ' completed.'
 cat << EOF > ${output_dir}/index.html
 <html>
 <head>
-<title>Transparent Springboard Icons</title>
+	<title>Transparent Springboard Icons</title>
+	<meta name="viewport" content="initial-scale=1" />
 </head>
 <body>
-<h1>Transparent Springboard Icons</h1>
-<p>Your icons are below.</p>
+	<h1>Transparent Springboard Icons</h1>
+	<p>Your icons are below.</p>
 <table>
 EOF
 

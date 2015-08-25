@@ -12,7 +12,7 @@ iOS Springboard Spacer is a shell script which helps you gain more control over 
 
 
 ## Which Devices Does It Support?
-The script is generic enough to support several screen sizes, but currently only supports the iPhone 5, 5S, 6 and the iPod Touch 5G. I would be happy to add support for other screen sizes if the demand is there, just drop me a message here on GitHub.
+The script is generic enough to support several screen sizes, but currently only supports the iPhone 5, 5S, 6 and the iPod Touch 5G (iOS 7 and later) or the iPhone 4, 4S and the iPod Touch 4G (iOS 6 and earlier). I would be happy to add support for other screen sizes if the demand is there, just drop me a message here on GitHub.
 
 
 ## How Does It Work?
@@ -27,7 +27,9 @@ If you're a Mac user, you can install it with [homebrew](http://brew.sh). Linux 
 
 Mac users can use homebrew as follows:
 
-```brew install imagemagick```
+```shell
+brew install imagemagick
+```
 
 ### Step 2: Take an Screenshot of an Empty Homescreen
 To do this, hold your finger down on any app icon until the app icons begin to wiggle. Now, swipe to the rightmost screen which should be devoid of icons:
@@ -42,7 +44,9 @@ Using your image transfer app of choice, copy the screenshot from your iOS devic
 ### Step 4: Run the Script
 Create an empty directory for output, and then run the script providing the screenshot image you took in Step 3 and the empty directory you created as arguments:
 
-```./springboard_spacer.sh --file_name /path/to/screenshot.png --output_dir /path/to/output/directory```
+```shell
+./springboard_spacer.sh --file_name /path/to/screenshot.png --output_dir /path/to/output/directory
+```
 
 ### Step 5: Share the Output via Apache
 Using Apache, share the files in the created directory on your local network at a location that can be reached with Safari on your iOS device.
@@ -76,6 +80,7 @@ Many ;) This is more of a curiosity than an actual workaround for icon placement
 
 * Buffer icons are visible when swiping between home screens. As a partial workaround, you can have a single coloured background or a background consisting of horizontal stripes.
 * Buffer icons are visible when swiping up to Spotlight.
+* Buffer icons are visible when in the task switcher.
 * Homescreen parallax scrolling and transition effects will reveal the outline of the buffer icons. Can be worked around by enabling "Use Reduced Motion" in the accessibility section of the Settings app.
 * Buffer icons are visible momentarily when waking the phone.
 * Buffer icons can be launched.
@@ -88,7 +93,7 @@ It would be nice, but probably not. As mentioned above, this is more of a curios
 
 ### Does the script support iOS 6 an earlier?
 
-Not at this current time, since the pre-iOS 7 icon sizes are smaller. It would be simple to add the feature if requested.
+Yes, but only for the iPhone 4, 4S and iPod Touch 4G. Run the script with the `--6` switch for these screen sizes to get iOS 6 icons. I can add iOS 6 support for other devices on request.
 
 ### I don't understand how the command line works! If I send you a screenshot of my empty home screen, will you generate the icons for me?
 
