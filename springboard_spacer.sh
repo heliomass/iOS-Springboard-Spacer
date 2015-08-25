@@ -200,7 +200,6 @@ cat << EOF > ${output_dir}/index.html
 <html>
 <head>
 	<title>Transparent Springboard Icons</title>
-	<meta name="viewport" content="initial-scale=1" />
 </head>
 <body>
 	<h1>Transparent Springboard Icons</h1>
