@@ -98,3 +98,7 @@ Yes, but only for the iPhone 4, 4S and iPod Touch 4G. Run the script with the `-
 ### I don't understand how the command line works! If I send you a screenshot of my empty home screen, will you generate the icons for me?
 
 Maybe. Just drop me a message.
+
+### I just upgraded to iOS 10 and my buffer icons are more visible
+
+iOS 10 seems to place the background differently. If you take a new background screenshot and then run the script again to generate fresh icons, you'll be fine.
