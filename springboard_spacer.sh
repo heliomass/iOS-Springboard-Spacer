@@ -171,11 +171,15 @@ counter=0
 while [ $counter -lt ${#icons[@]} ]; do
 	echo -n '.'
 	convert $file_name -crop "${icon_dim}x${icon_dim}+${icons[$counter]}" ${output_dir}/${counter}.png
+
+	# Create a hash to help work around iOS' webapp caching issues.
+	icon_hash=$(cat ${output_dir}/${counter}.png | md5 | awk '{print substr($0,0,5)}')
+
 	cat << EOF > ${output_dir}/${counter}.html
 <html>
 <head>
 	<title>&#8290;</title>
-	<link rel="apple-touch-icon-precomposed" sizes="${icon_dim}x${icon_dim}" href="./${counter}.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="${icon_dim}x${icon_dim}" href="./${counter}.png?hash=${icon_hash}" />
 	<meta name="viewport" content="initial-scale=1" />
 </head>
 <body>
