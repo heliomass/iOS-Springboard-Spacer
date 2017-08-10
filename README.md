@@ -102,3 +102,7 @@ Maybe. Just drop me a message.
 ### I just upgraded to iOS 10 and my buffer icons are more visible
 
 iOS 10 seems to place the background differently. If you take a new background screenshot and then run the script again to generate fresh icons, you'll be fine.
+
+### Sometimes an icon gets "stuck" after a fresh upload
+
+Welcome to the wonderful world of iOS web caching. Unfortunately the way this works is a mystery to most people, but yes, an icon can get stuck even after the source page is updated. Right now the only solution is to either wait a few days and hope the cache refreshes, or upload your icons to a differently named directory.
