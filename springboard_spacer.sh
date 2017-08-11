@@ -175,26 +175,20 @@ while [ $counter -lt ${#icons[@]} ]; do
 	# Create a hash to help work around iOS' webapp caching issues.
 	icon_hash=$(cat ${output_dir}/${counter}.png | md5 | awk '{print substr($0,0,5)}')
 
-	cat << EOF > ${output_dir}/${counter}.html
-<html>
-<head>
-	<title>&#8290;</title>
-	<link rel="apple-touch-icon-precomposed" sizes="${icon_dim}x${icon_dim}" href="./${counter}.png?hash=${icon_hash}" />
-	<meta name="viewport" content="initial-scale=1" />
-</head>
-<body>
-	<p>
-		Add me to your homescreen.
-	</p>
-	<p>
-		<img src="./${counter}.png" />
-	</p>
-	<p>
-		<a href="./index.html">back</a>
-	</p>
-</body>
-</html>
-EOF
+	cat <<-EOF > ${output_dir}/${counter}.html
+		<html>
+		    <head>
+		        <title>&#8290;</title>
+		        <link rel="apple-touch-icon-precomposed" sizes="${icon_dim}x${icon_dim}" href="./${counter}.png?hash=${icon_hash}" />
+		        <meta name="viewport" content="initial-scale=1" />
+		    </head>
+		    <body>
+		        <p>Add me to your homescreen.</p>
+		        <p><img src="./${counter}.png" /></p>
+		        <p><a href="./index.html">back</a></p>
+		    </body>
+		</html>
+	EOF
 	let counter=counter+1
 done
 echo ' completed.'
@@ -202,33 +196,33 @@ echo ' completed.'
 # Produce the index page
 cat << EOF > ${output_dir}/index.html
 <html>
-<head>
-	<title>Transparent Springboard Icons</title>
-</head>
-<body>
-	<h1>Transparent Springboard Icons</h1>
-	<p>Your icons are below.</p>
-<table>
+    <head>
+        <title>Transparent Springboard Icons</title>
+    </head>
+    <body>
+        <h1>Transparent Springboard Icons</h1>
+        <p>Your icons are below.</p>
+        <table>
 EOF
 
 counter=0
 for (( i=0; i<$num_icons_y; i++ )); do
 	echo '<tr>' >> ${output_dir}/index.html
 	for (( j=0; j<$num_icons_x; j++ )); do
-		cat << EOF >> ${output_dir}/index.html
-<td>
-<a href="./${counter}.html">
-<img src="./${counter}.png" />
-</a>
-</td>
-EOF
+		cat <<-EOF >> ${output_dir}/index.html
+			<td>
+			    <a href="./${counter}.html">
+			        <img src="./${counter}.png" />
+			    </a>
+			</td>
+		EOF
 	let counter=counter+1
 	done
 	echo '</tr>' >> ${output_dir}/index.html
 done
 
 cat << EOF >> ${output_dir}/index.html
-</table>
-</body>
+        </table>
+    </body>
 </html>
 EOF
